@@ -1,3 +1,3 @@
-salário = 750
+salario = 750
 aumento = 15
-print (salário + (salário * aumento/100))
+print (salario + (salario * aumento/100))
