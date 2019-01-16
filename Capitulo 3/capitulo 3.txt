@@ -1,0 +1,26 @@
+variávies numericas podem ser numeros inteiros e de ponto flutuante (decimais)
+
+variáveis do tipo lógico ou booleano armazenam informações do tipo verdadeiro ( True) ou falso (False)
+
+operadores lógicos: not (não) operador unário - vai inverter o valor
+                    and (e) operador biário - só será verdadeiro se os dois operadores forem verdadeiros
+                    or (ou) operador binário - só será falso se os dos operadores forem falsos
+
+Strings - sequência de caracteres.
+        - possui 3 tipos de operações sendo elas: fatiamento,concatenação e composição
+        - concatenação - o conteudo de uma string pode ser somado ou multiplicado
+        - composição - serve para juntar várias springs utilizando  - %d para numeros inteiros
+                                                                    - %s para strings
+                                                                    - %f para numeros decimais
+        - fatiamento - serve para representar partes especificas da string  
+ 
+
+Função len - retorna/mostra o número de caracteres contidos numa string 
+ 
+As variáveis podem ser alteradas com o tempo 
+
+Função input - serve como a entrada de dados do usuário. Sempre retorna valores do tipo String
+
+Função int - converte o valor retornado em um número inteiro 
+
+Função float - converte um um numero decimal 

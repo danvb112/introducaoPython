@@ -1,0 +1,15 @@
+operadores condicionais
+
+if - é o "se" endende-se ele como: se uma condição for verdadeira, faça alguma coisa
+
+else - é uma outra forma do "se", mas só é ativada caso o resultado do "if" seja falso
+
+elif - subistitui um "else" e "if" num aninhamento, simplificando e evitando erros de alinhamento
+
+Blocos - os operadores condicionais criam blocos de operação que são escritos com os textos mais a 
+         direita nas linhas, ao final de cada bloco deve-se escrever a proxima linha desde o inicio
+         sem o espaçamento 
+
+estruturas aninhadas: nada mais são do que operadores condicionais dentro de operadores condicionais
+                      como um "if" dentro de um "else" e virse e versa e por assim em diante.
+                      Para estruturas aninhadas é super importante o alinhamento dos blocos!! 
