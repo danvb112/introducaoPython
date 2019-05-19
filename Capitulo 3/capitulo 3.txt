@@ -23,4 +23,4 @@ Função input - serve como a entrada de dados do usuário. Sempre retorna valores 
 
 Função int - converte o valor retornado em um número inteiro 
 
-Função float - converte um um numero decimal 
+Função float - converte em um numero decimal 

@@ -1,0 +1,84 @@
+Listas - São um tipo de variável que permite o armazenamento de varios valores, acessados por um índice.
+         Pode conter zero ou mais elementos de um mesmo tipo ou de tipos diversos, podendo inclusive
+         conter outras listas.
+-O índice é utilizado para especificar/acessar um elemento da lista
+- índices negativos tambem funcionam. um índice negativo começa a contar do ultimo elemento
+- os colchetes servem para indicar que a variável é uma lista. Ex: L=[]
+- o tamanho da lista é definido pela quantidade de elemntos contidos nela 
+- a função "len" pode ser utilizada para saber o tamnho da lista uma vez que ela irá retornar a quanti-
+dade de elementos dessa lista 
+- Quando criamos uma lista "L" e fazemos "L=V" por exemplo, estamos criando referencias ou seja, tudo o 
+que for modificado em "L" será modificado em "V". Ao escrevermos "V=L[:]" estamos criando uma cópia da 
+lista, ou seja, uma será independente da outra quando for modificada 
+- podemos adicionar um elelmento ao fim da lista utilizando o método ".append(valor/string)" porém, o 
+".append" adiciona apenas 1 valor a lista, caso deseje adicionar mais valores de vez deve-se utilizar
+"L += [valor1, valor2, ...]". isso porque quando adicionamos listas dentro de outra lista, o interpre-
+tador executará um método chamado "extend".
+
+EX:
+L = ["a"]
+L.append("b") - adiciona apenas o "b" como 1 elemnto na lista
+L.append(["d","e"]) - adiciona " ["d","e"] " como 1 elemento na lista
+L. extend(["c"]) - adiciona apenas o "c" como 1 elemnto na lista
+L.extend(["f","g","h"]) - adiciona "f", "g", "h" como 3 elementos distindos na lista
+ 
+- para retirarmos elementos da lista pode-se usar a instrução "del". Quando um elemnto é excluido, ele
+não ocupa mais lugar na lista, fazendo com que os índices sejam reorganizados sem esse elemento.
+- listas podem ser utilizadas como fila, nesse caso utilizaremos o ".append()" para adicionarmos
+o elemento ao final da fila e o ".pop()" para retirarmos o primeiro elemento e, ao mesmo tempo, obter
+o elemento retirado. 
+- pilhas são parecidas com filas só que a diferença é que em uma fila, o primeiro elemento é retirado
+primeiro. já em pilhas, retira-se a partir do ultimo elemento. a diferença é a utilização do valor
+-1 a pop.
+
+
+- Python apresenta uma estrutura de repetção especialmente projetada para percorrer listas. A instrução
+"for" funciona de forma parecida a "while", mas a cada repetição utiliza um elemento diferente da lista
+-Normalmente utilizaremos "for" quando quisermos processar os elementos de uma lista, um a um.
+"while" é indicado para repetições nas quais não sabemos ainda quantas vezes vamos repetir ou onde
+manipulamos os índices de forma não sequencial 
+
+- podemos utilizar a função "range" para gerar listas simples. A função "range" não retorna uma lista
+prorpiamente dita, mas um gerador ou generator. A vantagem é gerar listas eficientemente sem precisar
+escrever 20000 valores no programa
+-podemos indicar qual é o primeiro número a gerar utilizando paramentros inicio e fim
+ex: for v in range(5, 8) -- usando 5 como inicio e 8 como fim, vamos imprimir os números 5,6,7.
+- se acrescentarmos um terceiro parâmetro a função range, teremos como saltar entrre os valores gerados
+por exemplom range(0,10,2) gera os pares entre 0 e 10, pois começa do 0 e adiciona 2 a cada elelmento.
+
+- podemos unitlizar a função end = " " dentro de um print, essa função irá indicar para não pular de 
+linha após a impressão.
+
+- A função "enumerate" gera uma tupla em que primeiro valor é o índice e o segundo é o elemento da lista
+sendo enumerada.
+
+- Para ordenar uma lista, realizaremos uma operação semelhante à da pesquisa, mas trocando a ordem dos 
+quando necessário. Um algoritimo muito simples de ordenação é o "Bubble Sort", ou método de bolhas.
+Consiste em comparar dois elementos a cada vez. Se o valor do primeiro elemento for maior do que o 
+do segundo, eles trocarão de posisão
+
+- Dicionários são uma estrutura de dados similar as listas, mas com propriedades de acesso diferentes.
+Um dicionário em si consiste em relacionar uma chave a um valor especídfico. 
+- Criamos dicionários utilizando chaves {}. Cada elemento do dicionário é uma combinação de chave
+e valor.
+-Um Dicionário é acessado por suas chaves. Ex: tabela["Alface"] -- onde tabela é o nome da variável do
+tipo dicionário, e "Alface" é a chave. o valor retornado é o mesmo que está associado a chave.
+Quando atribuimos um valor a uma chave, duas coisas podem ocorrer:
+1 - Se a chave já existe: o valor associado é alterado para o novo valor
+2 - Se a chave não existe: a nova chave será adicionada ao dicionário
+- podemos obter uma lista com as chaves utilizando o método .keys() ou uma lista dos valores associados
+utilizando o método .values(), esses metodos retornam geradores e podem ser utilizados diretamente
+dentro de um for ou transforma-los em uma lista usando a função "list".
+- para apagar uma  chave pode-se usar a instrução "del" Ex: del tabela["Tomate"]
+- o métodos .items() retorna uma tupla contendo a chave e o valor de cada item armazenado no dicionário
+
+- Tuplas são listas imutáveis, ideais para representar valores constantes e também realizar operações
+de empacotamento e desempacotamento de valores. são criadas de forma semelhante as listas mas usa-se
+parênteses em vez de colchetes Ex: tupla = ('a','b','c')
+- Tuplas suportam a maior parte das operações de lista como fatiamento e indexação, mas não podem
+ter seus elementos alterados
+- tuplas podem ser criadas usando valores separados por virgulas independente do parêntese, esse tipo
+de operação é chamado de empacotamento.
+- para se criar uma tupla de um único elemento deve-se acrescentar uma virgula após ele para indicar
+que será uma tupla Ex: t1= (1,)
+- tuplas também podem ser criadas a partir de listas usando a função "tuple"

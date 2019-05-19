@@ -1,0 +1,13 @@
+Estruturas de repetições
+
+while - é uma estrutura de repetição que irá repetir o bloco enquanto a condição for verdadeira, logo,
+        é como se fosse um "if" pois se utiliza de uma condição mas, irá repetir o bloco até que a
+        condição se torne falsa
+
+- A variável x atua como um contador se esse x for utilizado para contar o número de ocorrencias de um 
+  determinado envento, no caso, o número de repetições do "while"
+
+- quando queremos utilizar somente numeros pares ou seja 0 ou multiplos de 2 podemos usar o teste
+  "x % 2 == 0" 
+- A diferença entre um contador e um acumulador é que nos contadores o valor adicionado é constante
+  e, nos acumuladores variável 

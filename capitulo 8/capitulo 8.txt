@@ -1,0 +1,134 @@
+Funções
+
+- Podemos declarar nossas proprias funções em python usando a instrução "def"
+- para criarmos nossas próprias funções utilizamos "def" seguido do nome que queremos dar a função,
+após o nome e entre parenteses, especificamos o nome dos parâmetros que a função receberá seguido de ":"
+para se iniciar um bloco ou corpo da função.
+Ex:. def soma(a,b):
+        print(a+b)
+
+-Funções são interessantes para isolar uma tarefa especifica em um trecho de programa. Isso permite que
+a solução de um problema seja reutilizada em outras partes do programa, sem precisar repetir as mesmas
+linhas.
+- pode-se utilizar a instrução "return" para indicar o valor a retornar. A instrução "return" faz com
+que a função pare de executar e que o valor seja retornado imediatamente ao programa ou a função que a
+chamou. Assim, podemos entender a instrução "return" como uma interrupção da execução da função, seguido
+do retorno do valor. As linhas após a instrução "return" são ignoradas de forma similar à instrução
+"break" dentro de um "while" ou "for"
+- Usando estruturas de repetições e condicionais, podemos programar onde e como as funções retornarão,
+assim como decidir o valor a ser retornado
+- Definir funções para que resolvam apenas um problema é mais interessante pois, com o tempo podemos ar-
+mazenar essas funções e utiliza-las em outros programas
+- Variáveis locais são aquelasa que são definidas dentro da função, sendo inicializada a cada chamada
+Assim não podemos acessar o valor de uma variável local fora da função que a criou. 
+-Uma variável global é definida fora de uma função, pode ser vista por todas as funções do módulo e por 
+todos os módulos que importam do módulo que a definiu.
+- Variáveis globais devem ser utilizadas o mínimo possivel em seus programas, pois dificultam a leitura
+e violam o emcapsulamento da função em si, que podem mudar entre diferentes chamadas. Além disso, uma 
+variável global pode ser alterada por qualquer função, tornando a tarefa de saber quem altera seu valor
+mais trabalhosa. Um bom uso de variáveis globais é guardar valores constantes e que devem ser acessiveis
+a todas as funções do programa, como o nome de uma empresa ou valores constantes.
+- Se quisermos modificar uma variável global dentro de uma função, devemos imformar que estamos utili-
+zando uma variável global antes de inicializá-la, na primeira linha de nossa função. Essa definição pode
+ser feita com a instrução "global"
+- Nem sempre precisaremos passar todos os parâmetros para uma função, preferindo utilizar um valor
+previamente escolhido com padrão, mas deixando a possibilidade de alterá-lo, caso necessário. Nesse caso
+parâmetro opcionais são úteis para evitar a apssagem desnecessária dos mesmo valores, mas preservando
+a opção de passar valores caso necessário. pode-se combinar parâmetros opcionais e obrigatórios mas,
+eles não podem ser misturados entre si, e os parâmetros opcionais devem ser sempre os ultimos.
+- Quando especificamos o nome de um parâmetro, somos obrigados a especificar o nome de todos os outros
+também.
+- podemos também utilizar funções como parâmetros, isso permite injetar funcionalidades dentro de outras
+funções, torando-as configuráveis e mais genéricas.
+Ex:. Funções como parametros: 
+
+def soma(a,b):
+    return a+b
+def subtração(a,b):
+    return a-b
+def imprime (a,b,foper):
+    print(foper(a,b))
+imprime (5,4,soma)
+imprime (10,1,subtração)
+
+- podemos criar funções simples,sem nome, chamadas de funções "lambda" e estas também podem ter mais de
+um parâmetro
+Ex:. 
+a = lambda x: x*2
+print(a(3))
+
+- Depois de se criar vária funções, os programas ficam muito grandes. Precisamos armazenar nossas fun-
+ções em outros arquivos e usa-las sem precisar reescrever ou copiar e colar. Isso é resolvido com módu-
+los. Todo arquivo .py é um módulo, podendo ser importado com o comando "import".
+- utilizando o comando "import" é possivel chamar a função definida em um módulo. para chamarmos a
+função escrevemos o nome do módulo antes do nome da função: "modulo.função" (modulo = nome do modulo e
+função = nome da função) dessa forma podemos organizar nossas funções em arquivos diferentes e chama-las 
+quando necessário, sem precisar reescrever tudo.
+EX:. olhar a listagem 8.34 e 8.35 do livro
+
+- informar o nome do módulo antes da função é muito útil quando os programas crescem, servindo de dica
+para que se saiba que módulo define tal função, facilitando sua localização e evitando o que se chama de
+conflito de nomes. Dizemos que um conflito de nomes ocorre quando dois ou mais módulos definem funções
+com nomes idênticos. Nesse caso, utilizar a notação chamada de "modulo.função" resolve o conflito, pois
+a combinação do nome do módulo com o nome da função é única, evitando a duvida de descobiri o módulo
+que define a função que estamos chamando
+
+- Para gerar números aleatórios em Python, vamos utilizar o módulo "random" que trás várias funções para
+gração de números aleatórios. A função "randint", que recebe dois parâmetros, sendo o primeiro o ínicio
+da faixa de valores a considerar para a geração; e o segundo, o fim dessa faixa. Tanto o início quanto
+o fim são incluidos na faixa.
+ Ex:.
+
+import random
+for x in range(10):
+    print(random.randint(1,100))
+
+- pode=se também gerar números aleatórios fracionários ou de ponto flutuante com a função "random". A
+função "random" não recebe parâmetros e retorna valores entre 0 e 1. Para obter valores fracionários
+dentro de uma determinada faixa, podemos usar a função "uniform(a,b)"
+Ex:. função random
+
+import random
+for x in range(10):
+    print(random.random())
+
+Ex:. função uniform(a,b)
+
+import random
+for x in range(10):
+    print(random.uniform(15,25))
+
+
+- podemos usar a função "sample" para escolher aleatpriamente elementos de uma lista. Essa função recebe
+a lista e a qauntidade de elementos que queremos retornar. 
+
+Ex:. função sample
+
+import random
+print(random.sample(range(1,101), 6))
+
+- se quisermos embaralhar os elementos de uma lista, podemos utilizar a função "shuffle". Ela recebe
+a lista a embaralhar, alterando-a.
+
+Ex:. função shuffle
+
+import random
+a = list(range(1,11))
+random.shuffle(a)
+print(a)
+
+- A função "type" retorna o tipo de uma variável, função ou objeto em Python.
+- pode-se utlilizar a função type para exibir os elementos de uma lista na aqual os elementos são de
+tipos diferentes. Dessa forma, voçê pode executar operações diferentes dentro da lista, como verificar
+se um elemento é outra lista ou um dicionário.
+
+
+
+
+
+
+
+
+
+
+ 

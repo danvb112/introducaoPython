@@ -1,0 +1,80 @@
+TRABALHANDO COM STRINGS
+
+- strings são imutáveis em python, se quisermos altera-las temos que transforma-las em um lista
+
+- a função "list" transforma cada caractere da string em um elemento da lista, já o método .join()
+faz a operação inversa, transformando os elementos da lista em string
+
+- para verificar se a string começa ou termina com alguns caracteres, pode-se utilizaar os métodos
+.startswith() para os primeiros e .endswith() para os ultimos, considerando letras maiusculas e minuscu-
+las como diferentes
+
+- O método .lower() retorna uma cópia da string com todos os caracteres minúsculos, e o método .upper()
+a mesma coisa só que com todos os caracteres maiusculos
+
+- outra forma de verificar se uma palavra pertence a uma string é utilizando o operador "in" e para tes-
+tar se uam string não está contida em outra, usa-se o "npt-in"
+
+- se precisar contar as ocorrências de uma letra ou palavra em uma string, utilize o método .count()
+
+- para pesquisar se uma string está dentro da outra e obter a posição da primeira ocorrencia, utiliza-se
+o método .find() ou da direita para esquerda o método .rfind()
+Ex: s.find(tigres,0,10) #inicio=0 fim=10
+
+- os métodos index e rindex são bem parecidos com find e rfind, a diferença é que se a sub string não
+for encontrada,  lançam uma exceção do tipo ValueErro
+
+- existem métodos para apresentação de strings de form mais interessante. O método .center(), centraliza
+a strings em um número de posições passado como parâmetro, preenchendo com esapaços a direita e à
+esquerda  até que a string seja centralizada. pode-se passar o caractere de preenchimento que será 
+utilizado no lugar do espaço em branco. 
+EX: print("X" + s.center(10,".") + "X")
+
+- se deseja completar a string com espaços apenas à esquerda, pode utilizar o .ljust() e a direita
+.rjust()
+
+- O método .split() quebra uma string a partir de um caractere passado como parâmetro, retornando uma
+lista com as substrings já separadas.
+
+- O método .splitlines() separa uma string com varias linhas de texto
+
+- para substituir trechos de uma string por outros, utilize o método .replace(), nele o primeiro parâ-
+metro é a string a ser substituida e o segundo é o conteúdo que a substituirá. Opcionalmente, podemos
+passar um terceiro parâmetro que limita quantas vezes queremos realizar a repetição.
+
+- O método .strip() é utilizado para remover espaços em branco do inicio ou fim da string. já os métodos
+.lstrip() e .rstrip() removem apenas os caracteres em branco à direita ou à esquerda respectivamente.
+
+- O método .isalnum() retorna verdadeiro se a string não estiver vazia, e se todos os seus caracteres
+são letras e/ou números, qualquer outro tipo de caractere como espaços, vírgulas, exclamação, retorna
+False. já o método .isalpha() é mais restritivo e retorna verdadeiro apenas se todos os caracteres forem
+letras, incluindo vogais acentuadas. O método .isdigit() retorna verdadeiro se a string contiver apenas
+números
+
+- Os métodos .isupper() e .islower() verificam se todos os caracteres de uma string são letras
+maiusculass ou minusculas
+
+- O método .isspace() verifica se a sting contém apenas caracteresm em branco.
+
+- O método .isprintable() verifica se algo pode ser impresso na tela , retronando False se algum
+caractere que não pode ser impresso for encontrad na string.
+
+- O método .format() é uma forma de representar máscaras em strings, subistituindo %d, %f, %s.
+Ex: "{0} {1}".format("Alô", "Mundo") 
+- O número entre colchetes é uma referência aos parâmetros passados ao método .format(), onde o 0 é o 
+primeiro parâmetro; 1, o segundo e assim por diante, como os índices de uma lista. Uma das vantagens é 
+poder utilizar o mesmo parâmetro várias vezes na string além de, permitir uma reordenação completa da 
+mensagem como imprimir os parâmetros em outra ordem 
+- é permitido especificar a largura de cada valor utilizando o símbolo de dois pontos (:) após a posicão
+do parâmetro, como 0:10 que significa: Subistitua o primeiro parâmetro com uma largura de 10 caracteres.
+- podemos usar o simbolos de maior (>) ou menor(<) par especificar se queremos espaços adicionais
+a esquerda ou direita e o simbolo (^) de forma a centralizar. se quisermos outro caractere no lugar de
+espaços podemos especificar logo após os dois pontos.
+- Se o parâmetro for uma lista, podemos especificar o índice do elemento a substituir, dentro da mascara
+Ex: "{0[1]} {0[2]}".fotmat(["123" , "456"])
+- O mesmo é validos para dicionários
+Ex: "{0[nome]} {0[telefone]}".format({"telefone": 572, "nome": "Maria" })
+- Pode-se também utilizar uma vírgula para solicitar o agrupamento por milhar e o ponto para indicar a 
+precisão de números decimais, ou melhor, aquantidade de casas após a virgula
+
+

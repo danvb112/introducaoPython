@@ -1,0 +1,164 @@
+ARQUIVOS 
+
+- Arquivos são uma excelente forma de entrada e saída de dados para programas. Com eles, podemos ler
+dados de outros programas e mesmo da internet.
+
+- Um arquivo é uma área em disco onde podemos ler e gravar informações. Essa área é gerenciada pelo
+sistema operacional do computador, ou seja, não precisamos nos preocupar em como esse espaço é 
+organizado em disco.
+
+- para acessar um arquivo precisamos abri-lo. Durante a abertura, informamos o nome do arquivo, com o 
+nome do diretório onde ele se encontra (se necessário) e que operações queremos realizar: leitura e/ou
+escrita. Em python, abrimos arquivos com a função "open()" que utiliza parâmetros nome e modo. O nome é
+o nome do arquivo em si (Ex: leiame.txt) e o modo indica as operações que vamos realizar sendo elas:
+
+r - leitura
+w - escrita, apaga o conteúdo se já existir
+a - escrita, mas preserva o conteúdo se já existir
+b - modo binário
++ - atualização (leitura e escrita)
+
+- os modos podem ser combinados ("r+" , "w+" , "a+" , "r+b" , "w+b" , "a+b")
+
+- A função "open()" retorna um objeto do tipo file (arquivo) e é esse objeto que vamos usar pra escrever
+ou gravar dados no arquivo.
+
+- Utilizamos o método ".write()" para escrever ou gravar dados no arquivo, "read" para ler e "close"
+para fecha-lo. Ao trabalharmos com arquivos, devemos sempre realizar o seguinte ciclo: abertura, leitura
+e/ou escrita, fechamento.
+
+- O método ".readlines()" gera uma lista em que cada elemento é uma linha do arquivo.
+
+- Podemos pacessar os parâmetros passados ao programa na linha de comando utilizando o módulo "sys" e 
+trabalhando coma lista "argv".
+- Usando arquivos, podemos gravar dados de forma a reutiliza-los nos programas. Até agora, tudo o que 
+inserimos ou digitamos nos programas era perdido no fim da execução. Com arquivos, podemos registrar 
+essa informação e reutiliza-la. Arquivos podem ser utilizados para fornecer uma grande quantidade de
+dados aos programas.
+
+- Toda pagina web é escrita em uma linguagem de marcação chamada HTML. Esse formato é definido apenas
+com textos simples, ou seja, sem caracteres especiais de controle, ele utiliza marcações, que são 
+sequencias especiais de texto delimitado pelos caracteres de menor (<) e maior (>). Essas sequencias
+são chamdas de tags e podem iniciar ou finalizar um elemento. O elemento de mais alto nível de um docu-
+mento HTML é chamado de <html>. Escrevemos nossas páginas web entre as taags <html> e </html>, onde
+a primeira marca o início do documento; e a segunda seu fim.
+Ex:. criação de página com arquivo.html
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="uft-8">
+<title>Pagina do Daniel</title>
+</head>
+<body>
+Olá!
+</body>
+</html>
+
+
+
+- a primeira linha deve sempre ser incluido o <!DOCTYPE html> par indicar que o documento foi escrito
+no formato HTML
+
+- o atributo lang indica a língua utilizada ao escrever o documento 
+
+- O titulo da pagina é simplesmente escrito entre <title> e </title> 
+
+- O elemento body é o corpo da pagina web
+
+- Como páginas web são arquivos texto, podemos cria-las facilmente em python
+
+- Se quisermos mostrar o texto em vário paragrafos, devemos utilizar o elemento p. Assim as tags <p>
+e </p> marcam o inicio e fim de um parágrafo.
+
+- Aspas triplas permitem escrever longos textos mais facilmente. Elas funcionam como aspas mas permitem
+digitar a mensagem em várias linhas.
+
+- Existem também tags que marcam o cabeçalhos dos documentos: h1,h2,h3,h4,h5 e h.
+
+- Vamos aprender a listar os arquivos, monipular diretórios, verificar o tramanho e a data de criação
+de arquivos em disco, para isso precisamos saber onde os programas estão sendo executados e vamos utili-
+zar a função "getcwd" do módulo "os" para obter esse valor.
+
+- A função "chdir" muda o diretório atual. você pode referenciar um arquivo apenas usando o seu nome se
+ele estiver no diretório atual ou de trabahlo. O que "chdir" faz é mudar o diretório de trabahlo, permi-
+tindo que voçê acesse seus arquivos mais facilmente.
+- Qaundo um diretório está dentro de outro, dizemos que o diretório pai contém o diretório filho. 
+
+- O comando "mkdir" serve para criar pastas ou diretórios mas somente um por vez. Se precisar criar um 
+diretório sabendo ou não se os superiores foram criados, use a função "makedirs", que cria todos os 
+diretórios intermediarios de uma vez só.
+
+- você pode mudar o nome de um diretório usando a função "rename(velho,novo)" e ela tambpem serve para
+mover arquivos, bastando especificar o mesmo nome em outro diretório
+
+- Se você quiser apagar um diretório, use a função "rmdir" e se quiser apagar um arquivo usa a função
+"remove"
+
+- podemos solicitar uma lista de todos os arquivos e diretórios usando a função "listdir"
+
+-vamos ver como obter o tamanho do arquivo e as datas de criação, acesso e modificação com o módulo 
+"os.path" que traz várias outras funções que vamos utilizar para obter mais informações sobre os arqui-
+vos em disco. As duas primeiras são "isdir" e "isfile", que retornam True se o nome passado for um 
+diretório ou um arquivo.
+
+Ex:. verificação se é diretório ou arquivo
+
+import os
+import os.path
+for a in os.listdir("."):
+    if os.path.isdir(a):
+        print("%s/" % (a))
+    elif os.path.isfile(a):
+        print("%s" %(a))
+
+- também podemos verificar se um diretório ou arquivo existe com a função "exists".
+
+- "getsize" retorna o tamanho do arquivo em bytesA 
+
+- "getctime" retorna a data e hora de criação
+
+-"getmtime" retorna a data e hora de modificação
+
+- "getatime" retorna a data e hora de acesso
+
+- O módulo time traz várias funções para manipular o tempo
+
+- O "time.ctime" é usado para transformar a data e hora retornadas por "getmtime", "getatime" 
+e "getctime" em string. Isso é necessário porque o valor retornado é expresso em segundos e precisa ser
+corretamente convertido para ser exibido.
+
+- "gmtime" retorna uma tupla com componentes do tempo separados em elementos 
+
+- A função "time.time()" retorna a hora atual em segundos usando o horario de Greenwich. Se você deseja
+trabalhar com a hora em seu fuso horário, utilize "time.localtime"
+
+- A função "time.strftime" permite a formatação do tempo em string. Você pode passsar o formato desejado
+para a string seguindo os códigos de formatação da tabela 9.3 do livro
+
+- Se precisar converter uma tupla em segundos utilize a função "timegm" do módulo "calendar".
+
+- Se precisar trabalhar com data e hora em seus programas, consulte a documentação do python sobre os 
+módulos "time", "datetime", "calendar", "locale".
+
+- A função "abspath" retorna o caminho absoluto do path passado como parâmetro
+
+- A função "basename" retorna apenas a última parte do caminho, já a função "dirname" retorna o caminho
+a esquerda da última barra.
+
+- No windows pode usar também a função "splitdrive" par separar a letra do drive do caminho em si.
+A função retorna uma tupla onde a letra do drive é o primeirot elemento e o restando do camnho o
+segundo.
+
+- A função "os.walk" facilita a navegação em uma árvore de diretórios, retornando o nome do diretório
+sendo visitado (raiz), os diretórios encontrados dentro do diretório sendo visitado (diretórios) e uma
+lista de seus arquivos (arquivos). A vantagem da função "os.walk" é que ela visita automaticamente todos
+os subdiretórios dentro do diretório passado como parâmetro, fazendo-o repetidamente até navegar a 
+árvore de diretórios completa.
+
+
+
+
+
+
+
