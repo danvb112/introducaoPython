@@ -121,4 +121,3 @@ esses símbolos indicam que esses atributos não devem ser acessados, exceto pelo 
 - Não confundir os atributos protegidos que começam com "__", com o nome dos métodos mágicos ou espe-
 ciais que ja vimos, que começam e terminam por "__".
 
--
