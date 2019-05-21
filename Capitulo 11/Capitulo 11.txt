@@ -1,0 +1,84 @@
+BANCO DE DADOS
+
+- Alguns conceitos são importantissímos para o estudo de banco de dados como: campos, registros, tabelas
+e tipos de dados.
+
+- Campos são a menor unidade de informação em um sistema gerenciador de bancod de dados. Se fizermos uma
+comparação com uma agenda escrita no papel, nome e telefone seriam dois campos. O campo nome armazenaria
+o nome de cada contato e o campo telefone, o número de telefone, respectivamente.
+
+- Cada linha da agenda seria chamada de registro. Um registro é formado por um conjunto conhecido de
+campos. Em nosso exemplo, cada pessoa na agenda, com seu nome e telefone, formaria um registro.
+
+- Podemos pensar em tabelas do banco de dados como a unidade de armazenamento de registros do mesmo tipo
+Imagine uma entrada da agenda telefônica onde cada registro, contendo nome e telefone, seria armazenado.
+O conjunto de registros do mesmo tipo é organizado em tabelas, nesse caso, na tabela agenda ou lista te-
+lefônica.
+
+- SQL (Structured Query Language/ Linguagem de Consulta Estruturada) é a linguagem usada para criar
+bancos de dados, gerar consultas, manipular(inserir, atualizar, alterar e apagar) registros e principal-
+mente, realizar consultas. É uma linguagem de programação especializada na manipulação de dados, baseada
+ma álgebra relacional.
+
+- O SQLite é um gerenciador de banco de dados leve e completo, muito utilizado e presente mesmo em tele-
+fones celulares. Uma da principais características é não precisar de um servidor dedicado, sendo capaz 
+de se iniciar a partir do seu programa.
+
+Ex: Uso do SQLite em python
+
+import sqlite3
+conexão = sqlite3.connect("agenda.db")
+cursor = conexão.cursor()
+cursor.execute('''
+        create table agenda(
+            nome text,
+            telefone text)
+        ''')
+cursor.execute('''
+        insert into agenda (nome, telefone)
+            values(?, ?)
+            ''', ("Nilo", "7788-1432"))
+conexão.commit()
+cursor.close()
+conexão.close()
+
+- A conexão com o banco de dados se assemelha à manipulação de um arquivo, é a operação análoga a abrir
+um arquivo. Onome do banco de dados que está sendo criado será gravado em "agenda.db". A grande vantagem
+de um banco de dados é que o registro de informações e toda manutenção dos dados dsão feitos automatica-
+mente pra você com comandos SQL.
+
+- Em seguida foi criado um cursor. Cursores são objetos utilizdos para enviar comandos e receber resul-
+tados do banco de dados. Um cursor é criado para uma conexão, chamando-se o método cursor(). Uma vez que
+obtivemos um cursor, nós podemos enviar comandos ao banco de dados. O primeiro deles é criar uma tabela
+para guardar nomes e telefones. Vamos chama-la na agenda:
+
+"create table agenda(nome text, telefone text)"
+
+- O comando SQL usado pra criar tabelas é "create table". Esse comando precisa do nome da tabela a criar
+nesse exemplo, agenda e uma lista de campos entra parênteses. Nome e telefone são nossos campos e "text"
+é o tipo. A maioria dos bancos de dados exige um tipo para cada campo. Um campo do tipo "text" pode ar-
+mazenar dados como uma string do Python.
+
+- Foi utilizado o método "execute" do cursor para enviar o comando ao banco de dados.
+
+- Com a tabela criada, podemos começar a introduzir nossos dados, o comando SQL usado para inserir um 
+registro na tabela é:
+
+"insert into agenda (nome, telefone) values(?, ?)"
+
+- O comando "insert" precisa do nome da tabela, onde iremos inserir os dados, e também do nome dos cam-
+pos e sesu respectivos valores. "into" faz parte do comando "insert" e é escrito antes do nome da tabela
+O nome dos campos é escrito logo a seguir, separados por vírgula e, dessa vez, não precisamos mais in-
+formar o tipo dos campos, apenas a lista de nomes. Os valores que vamos inserir na tabela são especi-
+ficados também entre parênteses, mas na segunda parte do comando "insert" que começa apos a palavra
+"values". No exemplo, a posição de cada valor foi marcada com interrogações, uma para cada campo.
+A ordem dos valores é a mesma dos campos; logo, a primeira interrogação se refere ao campo "nome" e a 
+seguda ao campo "telefone".
+
+- O método "execute" foi utilizado novamente, agora para executar o comando "insert", mas, dessa vez,
+passamos os dados logo após o comando. No exemplo "Nilo" e "7788-1432" irão subistituir a primeira e a
+segunda interrogação quando o comando for executado.
+
+- Quando o comando é executado os dados foram enviados ao banco de dados, mas ainda não estão defini-
+tivamente gravados. isso acontece pois estamos usando uma transação (Não explicou o que era...).
+
