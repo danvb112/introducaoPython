@@ -3,7 +3,7 @@ BANCO DE DADOS
 - Alguns conceitos são importantissímos para o estudo de banco de dados como: campos, registros, tabelas
 e tipos de dados.
 
-- Campos são a menor unidade de informação em um sistema gerenciador de bancod de dados. Se fizermos uma
+- Campos são a menor unidade de informação em um sistema gerenciador de banco de dados. Se fizermos uma
 comparação com uma agenda escrita no papel, nome e telefone seriam dois campos. O campo nome armazenaria
 o nome de cada contato e o campo telefone, o número de telefone, respectivamente.
 
@@ -43,9 +43,9 @@ cursor.close()
 conexão.close()
 
 - A conexão com o banco de dados se assemelha à manipulação de um arquivo, é a operação análoga a abrir
-um arquivo. Onome do banco de dados que está sendo criado será gravado em "agenda.db". A grande vantagem
-de um banco de dados é que o registro de informações e toda manutenção dos dados dsão feitos automatica-
-mente pra você com comandos SQL.
+um arquivo. O nome do banco de dados que está sendo criado será gravado em "agenda.db". A grande vanta-
+gem de um banco de dados é que o registro de informações e toda manutenção dos dados dsão feitos automa-
+ticamente pra você com comandos SQL.
 
 - Em seguida foi criado um cursor. Cursores são objetos utilizdos para enviar comandos e receber resul-
 tados do banco de dados. Um cursor é criado para uma conexão, chamando-se o método cursor(). Uma vez que
@@ -67,7 +67,7 @@ registro na tabela é:
 "insert into agenda (nome, telefone) values(?, ?)"
 
 - O comando "insert" precisa do nome da tabela, onde iremos inserir os dados, e também do nome dos cam-
-pos e sesu respectivos valores. "into" faz parte do comando "insert" e é escrito antes do nome da tabela
+pos e seus respectivos valores. "into" faz parte do comando "insert" e é escrito antes do nome da tabela
 O nome dos campos é escrito logo a seguir, separados por vírgula e, dessa vez, não precisamos mais in-
 formar o tipo dos campos, apenas a lista de nomes. Os valores que vamos inserir na tabela são especi-
 ficados também entre parênteses, mas na segunda parte do comando "insert" que começa apos a palavra
@@ -81,4 +81,89 @@ segunda interrogação quando o comando for executado.
 
 - Quando o comando é executado os dados foram enviados ao banco de dados, mas ainda não estão defini-
 tivamente gravados. isso acontece pois estamos usando uma transação (Não explicou o que era...).
+
+EX Consulta no banco de dados:
+
+import sqlite3
+conexão = sqlite3.connect("agenda.db")
+cursor = conexão.cursor()
+cursor.execute("select * from agenda")
+resultado = cursor.fetchone()
+print(f"Nome: {resultado[0]}\nTelefone: {resultado[1]}")
+cursor.close()
+conexão.close()
+
+- O comando SQL que realiza uma consulta é o comando "select"
+
+"select * from agenda"
+
+- O comando "select", em sua forma mais simples, utiliza uma  lista de campos e uma lista de tabelas.
+Em nosso exemplo, a lista de campos foi substituida por *. O asterisco representa todos os campos da
+tabela sendo consultada, nesse caso "nome" e "telefone". A palavra from é utilizada para seárar a lista
+de campos da lista de tabelas.
+
+- Para acessar os resultadaos do comando "select", devemos utilizar o método "fetchone". Esse método
+retorna uma tupla com os resultados de nossa consulta ou "None", caso a tabela esteja vazia.
+
+- A principal diferença entre o método "execute" e "executemany" é que "executemany" trabalha com vários
+valores.
+
+- O método "fetchall" retorna uma lista de tuplas. Cada elemento dessa lista é uma tupla contendo todos
+os campos retornados pela consulta e retorna "None" caso o resultado da consulta seja vazio. O método
+"fetchall" é interessantes para consultas pequenas, mas para consultas com mais de 100 registros, outros
+métodos são mais interessantes.
+
+- Você pode ler "fetch" como obter; logo, "fetchone" seria obter um resultado e "fetchall" obter todos
+os resultados.
+
+- A estrutura "with" do python pode nos ajudar a não nos esquercermos de chamar os métodos "close" de 
+nossos objetos. Uma das vantagens de utilizarmos "with" é que criamos um bloco onde um objeto é tido
+como válido. Se algo acontecer dentro desse bloco, como uma exceção, a estrutura "with" garante que o 
+método "close" será chamado. Na realidade, "with" chama o método "__exit__" no fim do bloco e funciona 
+muito bem com arquivos e conexões de banco de dados mas, cursores não possuem o método "__exit__",
+obrigado-nos a chamar manualmente o método "close".
+
+- A facilidade de um sistemas de banco de dados começa a aparecer quando precisamos procurar e alterear
+dados. Vamos utilizar uma variação do comando "select" para mostrar apenas alguns registros. Pesquisas
+em SQL são feitas com a cláusula "where" que funciona de forma parecida a um filtro:
+
+" select * from agenda where nome = "Nilo" "
+
+- Veja que apenas acrescentamos a cláusula "where" após o nome da tabela. O critério de pesquisa deve
+ser escrito como uma expressão, no caso (nome = "Nilo").
+
+- O "or" da linguagem SQL funciona dr forma semelhante ao "or" do python e os operadores relacionais
+"and" e "not" ffuncionam exatamente como em python e podem ser usados em expressóes SQL também.
+
+- O comando "updade" serve apra alterar os registros do banco de dados. Por exemplo, vamos alterar
+o registro telefone de "Nilo" para "12345-6789":
+
+" update agenda set telefone = "12345-6789" where nome = 'Nilo' "
+
+- A Cláusula "where" funciona como no comando "select". A segunda parte do comando "update" é a cláusula
+"set" que é usada para indicar o que fazer nos registros selecionados pela expressão "where".
+
+- As mesmas regras do comando "select" servem para o comando "update". Se os calores não forem constan-
+tes, você tem que utilizar parâmetros.
+
+- O comando "update" pode alterar mais de um registro de uma vez só. Sem a cláusula "where", todos os 
+registros serão selecionados e alterados:
+
+" update agenda set telefone = "12345-6789" "
+
+- A prorpiedade "rowcount" do cursor serve para saber quantos registros foram alterados por nosso update
+e é interessante para confirmarmos o resultado de comandos de atualização, como o "update".
+
+- Como já sabemos, o método "commit" grava as alterações. O método "rollback" faz o inverso, abortando
+as alterações e deixando o banco de dados como antes. os métodos "commit" e "rollback" fazem o controle
+de transações do banco de dados.
+
+- Podemos entender uma transação como um conjunto de operações que deve ser executado completamente.
+Isso significa operações que não fazem sentido serem salvas dentro de um grupo de operações. Se a exe-
+cução do grupo falhar, todas as alterações causadas durante a transação corrente devem ser revertidas
+(rollback). Caso tudo ocorra como planejado, as operações serão armazenadas definitivamente no banco de
+dados (commit).
+
+-
+ 
 
