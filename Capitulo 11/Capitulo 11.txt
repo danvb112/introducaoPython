@@ -193,6 +193,81 @@ mos nomes dos campos em maiúsculas ou minúsculas. por exemplo:
 
 " print ("Nome: %s\nTelefone: %s" % (registro["NOME"], registro["Telefone"])) "
 
+- conforme nossas tabelas crescem, trabalhar com dados pode não ser a melhor solução, e precisaremos
+acrescentar campos para manter o banco de dados. Uma dessas necessidades é identificar cada registro de
+maneira única. Nós podemos utilizar dados que não se repetem como o nome da pessoa, como uma chave pri-
+mária. Podemos entender chave primária como a chave do de um dicionário, mas, nesse caso para tabelas em
+nosso banco de dados. Uma alternativa pra isso é a geração automática de chaves:
+
+Ex: geração automática de chaves:
+
+create table estados(
+                  id integer primary key autoincrement,
+                  nome text, 
+                  população integer)
+
+- No exemplo, id é do tipo integer, ou seja, números inteiros, id é o campo que foi escolhido para ser
+chave primária e escrevemos "primary key autoincremente" para que o SQLite gere nímeros automaticamente
+
+- podemos utilizar a cláusula "order by" para ordenar os resultados de nossa consulta:
+
+EX: ordenação por nome:
+
+"select * form estados order by nome"
+
+EX: ordenação por população:
+
+"select form estados * order by população"
+
+ou de forma decrescente:
+
+"select form estados * order by população desc"
+
+- Em SQL o comando utilizado para alterar os campos de uma tabela é o "alter table"
+
+- Um banco de dados pode realizar operações de agrupamento de dados faculmente como por exemplo, soli-
+citar o valor mínimo, máximo ou a média de um grupo de registros.
+
+- Para exibir quantos registros fazem parte desse grupo usamos a função "count". A cláusula SQL que in-
+dica agrupamento é o "group by", seguida do nome dos campos que compõem o grupo. Imagine que um banco
+vai concatenar cada um desses campos, criando um valor para cada registro. Vamos chamar esse valor de
+"chave de grupo". Todos os registros com a mesma chave de grupo fazem parte do mesmo grupo e serão re-
+presentados por apenas um registro na consulta de seleção. Essa consulta com grupo só pode conter campos
+utilizados para compor a chave de grupo e funções de agrupamento de dados como "min"(mínimo), "max"(má-
+ximo), "avg"(média), "sum"(soma) e "count"(contagem).
+
+EX: agrupar os estados por região:
+
+"select região, count(*) from esatdos group by região"
+
+- Você pode utilizar a cláusula "as" do SQL para dar nomes ás colunas de uma consulta.
+
+- Podemos filtrar os resultados após o agrupamento, usando a cláusula "having". A diferença entre o
+"where" e o "having" é que o "where" é executada antes do agrupamento, selecionando os registros que fa-
+rão parte do resultado, antes do agrupamento ser realizado. A cláusula "having", avalia o resultado do
+agrupamento e decide quais farão parte do resultado final.
+
+- SQLite também trabalha com datas mas, o tipo DATE não é suportado diretamente, gernado uma certa con-
+fusão entre datas e strings:
+
+EX: criação de tabela com um campo do tipo data:
+
+import sqlite3
+feriados = [["2018-01-01", "Confraternização Universal"], ["2018-04-21", "Tiradentes"], 
+["2018-05-01", "Dia do trabalhador"], ["2018-09-07", "Independência"], 
+["2018-10-12", "Padroeira do Brasil"], ["2018-11-02", "Finados"], 
+["2018-11-15", "Proclamação da República"], ["2018-12-25", "Natal"]]
+
+with sqlite3.connect("brasil.db") as conexão:
+    conexão.execute("create table feriados(id integer primary key autoincrement, data date, 
+         descrição text)")
+    conexão.executemany("insert into feriados(data,descrição) values (?,?)", feriados)
+
+- As datas foram escritas no formato ISO, ou seja, ANO-MÊS-DIA. Nesse formato a data do Natal 
+(25/12/2014) é escrita como 2014/12/25. Escrever datas nesse formato é caracteristica do SQLite.
+
+-
+
 
 
 
