@@ -164,6 +164,37 @@ cução do grupo falhar, todas as alterações causadas durante a transação corrente
 (rollback). Caso tudo ocorra como planejado, as operações serão armazenadas definitivamente no banco de
 dados (commit).
 
--
+- O comando "delete" apaga registros com base em um critério de seleção, especificado da cláusula
+"where":
+
+" delete from agenda where nome = 'Maria' "
+
+- Acessar os campos por posição nem sempre é tão fácil. Usando SQLite, podemos acessá-los pelo nome,
+adicionando uma linha:
+
+" conexão.row_factory = sqlite3.row "
+
+Ex: acessando campos pelo nome:
+
+import sqlite3
+
+conexão = sqlite3.connect("agenda.db")
+conexão.row_factory = sqlite3.Row
+cursor = conexão.cursor()
+for registro in cursor.execute("select * from agenda"):
+    print("Nome: %s\nTelefone: %s" % (registro["nome"], registro["telefone"]))
+cursor.close()
+conexão.close()
+
+
+- Dessa forma, registro pode ser acessado como se fosse um dicionário, onde o nome do campo é usado como
+chave. Outra facilidaade que essa linha traz é que as chaves são aceitas independentemente se escrever-
+mos nomes dos campos em maiúsculas ou minúsculas. por exemplo:
+
+" print ("Nome: %s\nTelefone: %s" % (registro["NOME"], registro["Telefone"])) "
+
+
+
+
  
 
